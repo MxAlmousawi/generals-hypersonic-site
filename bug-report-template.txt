@@ -1,0 +1,18 @@
+GENERALS HYPERSONIC — BUG REPORT
+
+Mod version / build:
+Windows version:
+Zero Hour installation family and patch:
+Map:
+Factions / players:
+AI difficulty (if applicable):
+
+What happened:
+What you expected:
+Steps to reproduce:
+Does it happen again:
+
+Attach the replay from Documents\Generals Hypersonic Data\Replays.
+After a crash, attach ReleaseCrashInfo.txt from Documents\Generals Hypersonic Data.
+Review attachments for private information before sending them.
+Send it through the bug-report link on the website once one is listed there.

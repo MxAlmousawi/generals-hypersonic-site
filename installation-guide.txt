@@ -1,0 +1,52 @@
+GENERALS HYPERSONIC — INSTALLATION GUIDE
+
+EA has not endorsed and does not support this product.
+Free unofficial fan mod for Command & Conquer: Generals – Zero Hour. See the website
+for current release availability and package versions. Android is planned for a
+later alpha.
+
+REQUIREMENTS
+Your own legal copy of Command & Conquer: Generals – Zero Hour, patch 1.04.
+The original game is not included. Retail/The First Decade, Steam and EA app
+are recognized installation families; release testing of every variant is not
+yet complete. Check the actual installed patch version.
+
+INSTALLER
+1. Have Zero Hour 1.04 installed.
+2. Run the Generals Hypersonic installer. Select your Zero Hour folder if asked.
+   The mod destination must be its own folder, outside Zero Hour.
+3. Launch the Generals Hypersonic shortcut.
+
+The mod uses HypersonicZH.exe and Hypersonic.big in a separate mod folder.
+The default installer location is %LOCALAPPDATA%\Programs\Generals Hypersonic.
+The Zero Hour game folder is read, not changed.
+Options, saves, replays and crash reports use Documents\Generals Hypersonic Data.
+
+PORTABLE ZIP
+Extract the official ZIP into its own folder, outside the Zero Hour folder.
+Run HypersonicZH.exe. Keep Hypersonic.big next to the executable.
+If Zero Hour is not found, create a plain-text HypersonicZH.ini next to the
+executable containing the line below, substituting your actual game folder:
+
+GameDir=C:\path\to\your\Zero Hour folder
+
+The portable ZIP contains the same executable; it is not a workaround for
+Windows security controls. The website states each release's signing status.
+
+FILE VERIFICATION / SOURCE
+Compare an official package's SHA-256 with the checksum listed on the website.
+In PowerShell: Get-FileHash -Algorithm SHA256 -LiteralPath 'path-to-package'
+The matching engine source accompanies every release
+(GeneralsHypersonic-<version>-engine-source.zip).
+See LICENSE-ENGINE.txt for the unchanged engine license and EA additional terms.
+
+UNINSTALL
+Use the Start menu "Uninstall Generals Hypersonic" shortcut or Windows apps
+settings. User data is kept by default. A portable install can be removed by
+deleting its own extracted mod folder. Keep any saves/replays you want to retain.
+
+MULTIPLAYER / HELP
+All players need the same Hypersonic build and executable. Retail Zero Hour
+players cannot join a Hypersonic match. Cross-platform play is not promised.
+See release-notes.txt and bug-report-template.txt. Send reports through the
+bug-report link on the website once one is listed there.

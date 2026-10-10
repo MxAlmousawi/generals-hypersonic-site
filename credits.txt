@@ -1,0 +1,29 @@
+GENERALS HYPERSONIC — CREDITS
+
+EA has not endorsed and does not support this product.
+
+Author: MxAlmousawi.
+Electronic Arts: original Command & Conquer: Generals / Zero Hour and released
+engine source. Game trademarks belong to their respective owners.
+TheSuperHackers and community contributors: GeneralsGameCode community engine,
+from which HypersonicZH.exe is built. Project engine changes are on a fork.
+
+The project author directs the work. Claude (Anthropic) assisted with scripted
+3D models; Codex (OpenAI) assisted with images, icons, textures, UI and title
+logo concepts. Several icons and the Iran emblem are the author's own art.
+The website title logo is original project art (drone and missiles, Codex-generated,
+finished by the project), shown with the owner's Iran emblem and the Codex operations map.
+The five website showcase images are gameplay screenshots reviewed and chosen by the owner.
+Website fonts: Barlow Condensed (Copyright 2017 The Barlow Project Authors) and
+IBM Plex Mono (Copyright 2017 IBM Corp.), both under the SIL Open Font License 1.1,
+self-hosted unmodified as served by Google Fonts; licence texts in assets/fonts/.
+
+Project tools include Python/Pillow, ffmpeg, project model tools, Inno Setup
+and the portable Visual C++ 6 engine toolchain.
+Drone and ballistic missile audio is project work, edited for the mod.
+Other stock voices/effects/models/textures are read from the player's retail
+installation. Retail archives are never redistributed.
+
+The engine is GPL-3.0 with EA additional terms; see LICENSE-ENGINE.txt.
+The mod's own content is © MxAlmousawi unless credited otherwise; see LICENSE.txt.
+This is an unofficial fan mod, not affiliated with or endorsed by EA.

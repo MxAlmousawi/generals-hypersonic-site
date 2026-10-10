@@ -1,0 +1,31 @@
+GENERALS HYPERSONIC — RELEASE NOTES / KNOWN ISSUES
+
+EA has not endorsed and does not support this product.
+
+Free unofficial fan mod for Command & Conquer: Generals – Zero Hour.
+Iran joins as a fourth faction, with strike drones and ballistic missiles,
+in skirmish against the AI and in multiplayer. Public packages, once
+available, are listed on the website with their version and checksums.
+Android is planned for a later alpha; no Android download is available.
+
+------------------------------------------------------------------------
+v1.0.0-alpha.1 (October 2026): closed Windows alpha for invited testers
+------------------------------------------------------------------------
+Formats for testers: Windows installer and portable ZIP.
+Campaign missions, Generals Challenge and Iran sub-generals are not included.
+
+EXPECTATIONS
+- Bugs, unfinished or placeholder art/icons, evolving balance and possible crashes.
+- Iran's skirmish AI is still being tuned.
+- Multiplayer requires the same Hypersonic build and executable for every player.
+- Android-to-PC multiplayer is unresolved; do not assume cross-platform support.
+- Testing on more PCs and across game installation variants is still in progress.
+  No finished compatibility claim is made.
+
+The mod uses a separate mod folder and Documents\Generals Hypersonic Data;
+the original Zero Hour folder is not changed by the installation.
+Your own legal Zero Hour 1.04 is required; no retail game archives are included.
+
+Report actual/expected behavior, map, factions, AI difficulty, mod version,
+replay and ReleaseCrashInfo.txt after a crash. Use bug-report-template.txt.
+Matching engine source accompanies every distributed engine release.
