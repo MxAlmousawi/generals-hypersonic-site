@@ -1,0 +1,34 @@
+GENERALS HYPERSONIC — LICENSE SUMMARY
+
+EA has not endorsed and does not support this product.
+
+MOD CONTENT (SEPARATE FROM THE ENGINE)
+Mod content © MxAlmousawi, all rights reserved, except where the project
+credits state otherwise (some sounds and assets have their own sources;
+see credits.txt). The mod is free to play. You may share
+unmodified copies of the official release. No commercial use, selling,
+paywalls or paid mirrors. Redistribution of modified mod content or reuse
+in another project requires the author's written permission.
+
+ENGINE
+HypersonicZH.exe derives from TheSuperHackers' community engine, based on
+EA's released Generals / Zero Hour source. The engine and its source are
+licensed under GPL-3.0 with EA's additional terms. The reserved-rights
+restrictions on mod content do not apply to the engine. You may copy, modify
+and redistribute the engine under its own terms. The full, unchanged engine
+license is LICENSE-ENGINE.txt. Matching source must accompany distribution:
+it is supplied with tester releases, and the matching source for each public
+release is linked on the website next to its packages.
+
+GAME / AFFILIATION
+Your own legal copy of Zero Hour 1.04 is required. The mod includes modified
+retail INI/map/UI data and project content, never the retail game archives.
+Generals Hypersonic is a free unofficial fan modification, not affiliated with
+or endorsed by Electronic Arts. Game trademarks belong to their owners.
+
+Voluntary donation requests belong only on the mod's own website/download
+page, never in the game, installer or a shipped player guide. Donors receive
+no special content or access in the mod.
+
+This plain-language summary follows the repository LICENSE.md as read on
+2026-10-06; the engine's full license governs its terms.

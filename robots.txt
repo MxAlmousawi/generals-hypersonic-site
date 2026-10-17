@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mxalmousawi.github.io/generals-hypersonic-site/sitemap.xml
