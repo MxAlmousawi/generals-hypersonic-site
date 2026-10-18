@@ -29,6 +29,35 @@ window.HYPERSONIC_CONFIG = {
   // Cookie-free visit and download counts (goatcounter.com). Set the site code, e.g. 'hypersonic'; null = off.
   analytics: { goatcounterCode: 'generals-hypersonic' },
   publicSiteUrl: 'https://mxalmousawi.github.io/generals-hypersonic-site/',
+  // Thin bar at the top of the page pointing to the voice acting roles (#voices), with the open-role count from `voices`.
+  // enabled: false = no bar. A visitor who closes it never sees this campaign again (stored per browser); a new `id`
+  // shows the bar again to everyone. It also hides itself while no role is open.
+  announcement: { enabled: true, id: 'voices-2026-10', href: '#voices' },
+  // Voice acting casting board (#voices). Change only `status` and `credit`, then set `updated`.
+  // status: 'open' | 'taken' (someone has claimed it) | 'recorded' (recordings received).
+  // credit: the name the volunteer asked to be credited as (only with their OK), or null. Shown on the card and in
+  // "Voices so far". Keep the Telegram role list (crossed-out roles) in step with this.
+  voices: {
+    updated: '2026-10-19',
+    roles: {
+      announcer: { status: 'open', credit: null },
+      irgc: { status: 'open', credit: null },
+      basij: { status: 'open', credit: null },
+      atgm: { status: 'open', credit: null },
+      misagh: { status: 'open', credit: null },
+      'drone-operator': { status: 'open', credit: null },
+      kaveh: { status: 'open', credit: null },
+      dozer: { status: 'open', credit: null },
+      'supply-truck': { status: 'open', credit: null },
+      karrar: { status: 'open', credit: null },
+      safir: { status: 'open', credit: null },
+      boragh: { status: 'open', credit: null },
+      zu23: { status: 'open', credit: null },
+      bavar: { status: 'open', credit: null },
+      fajr5: { status: 'open', credit: null },
+      zolfaghar: { status: 'open', credit: null }
+    }
+  },
   media: {
     launch: { verifiedCapture: true, alt: 'Gameplay screenshot: four truck-mounted launchers on a desert base fire ballistic missiles straight up, trailing smoke.' },
     missiles: { verifiedCapture: true, alt: 'Gameplay screenshot: missiles strike an enemy base, with two bright explosions among the buildings and tracer lines crossing the sky.' },

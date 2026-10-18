@@ -335,6 +335,65 @@
     });
   }
 
+  // ---- Voice acting casting board: role status and credits from config.voices ------------------
+  // Without JavaScript (or without config) the cards show no status and the count line points to
+  // the Telegram role list, so the page never claims a role is open when it is not known.
+  const voices = object(config.voices);
+  const castRoles = object(voices.roles);
+  const STATUS = {
+    open: ['Open', 'آزاد'],
+    taken: ['Taken', 'رزرو شده'],
+    recorded: ['Recorded', 'ضبط شده']
+  };
+  const faDigits = value => String(value).replace(/\d/g, digit => '۰۱۲۳۴۵۶۷۸۹'[digit]);
+  const cards = [...document.querySelectorAll('#voices [data-role]')];
+  const known = cards.filter(card => STATUS[object(castRoles[card.dataset.role]).status]);
+  if (cards.length && known.length === cards.length) {
+    const names = [];
+    let open = 0;
+    const strip = byId('cast-strip');
+    for (const card of cards) {
+      const role = object(castRoles[card.dataset.role]);
+      const [en, fa] = STATUS[role.status];
+      if (role.status === 'open') open += 1;
+      card.dataset.status = role.status;
+      const chip = card.querySelector('.role-status');
+      chip.replaceChildren(node('span', en), node('span', fa));
+      chip.lastChild.lang = 'fa';
+      chip.hidden = false;
+      const credit = text(role.credit, 60);
+      const creditLine = card.querySelector('.role-credit');
+      if (credit && role.status !== 'open') {
+        // Language-neutral: a microphone mark and the name (the status chip already says taken/recorded in both languages).
+        const icon = node('span', null, 'mic');
+        icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-6 9a6 6 0 0 0 12 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+        creditLine.replaceChildren(icon, node('span', role.status === 'recorded' ? 'Voiced by ' : 'Claimed by ', 'sr-only'), node('bdi', credit));
+        creditLine.hidden = false;
+        if (role.status === 'recorded') names.push(credit);
+      }
+      // One equal cell per role in page order (decorative; the text count is the accessible version).
+      const cell = node('li', null, `cast-cell ${role.status}`);
+      strip.append(cell);
+    }
+    strip.hidden = false;
+    const total = cards.length;
+    const count = byId('cast-count');
+    count.classList.add('filled');
+    count.replaceChildren(
+      node('strong', `${open} of ${total} roles open`),
+      node('span', `${faDigits(open)} از ${faDigits(total)} نقش آزاد`, 'cast-count-fa'));
+    count.lastChild.lang = 'fa';
+    count.lastChild.dir = 'rtl';
+    const updated = typeof voices.updated === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(voices.updated) ? new Date(`${voices.updated}T12:00:00Z`) : null;
+    if (updated && !Number.isNaN(updated.getTime())) {
+      count.append(node('span', `Updated ${updated.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}`, 'cast-updated'));
+    }
+    if (names.length) {
+      byId('cast-names').replaceChildren(...names.map(name => { const item = node('li'); item.append(node('bdi', name)); return item; }));
+      byId('cast-credits').hidden = false;
+    }
+  }
+
   // ---- Showcase images and the enlarged-image viewer -----------------------------------------
   const pending = 'Preview awaiting gameplay verification.';
   const media = object(config.media);
@@ -386,6 +445,9 @@
   function layout() {
     const height = Math.ceil(header.getBoundingClientRect().height);
     document.documentElement.style.setProperty('--header-height', `${height}px`);
+    // The announcement bar sits above the header; the hero backdrop and first-screen height make room for it.
+    const bar = document.getElementById('announce');
+    document.documentElement.style.setProperty('--announce-height', `${bar && !bar.hidden ? Math.ceil(bar.getBoundingClientRect().height) : 0}px`);
     // The sticky header covers the top of the page on wide screens; phones scroll it away.
     document.documentElement.style.setProperty('--anchor-offset', `${wide.matches ? height : 0}px`);
     headerState();
@@ -396,7 +458,9 @@
   addEventListener('resize', scheduleLayout);
   addEventListener('pageshow', layout);
   addEventListener('hashchange', headerState);
-  new ResizeObserver(scheduleLayout).observe(header);
+  const layoutWatch = new ResizeObserver(scheduleLayout);
+  layoutWatch.observe(header);
+  if (document.getElementById('announce')) layoutWatch.observe(document.getElementById('announce'));
 
   // ---- Title logo: a blurred preview holds its place until the image has loaded ----------------------
   const titleArt = byId('title-art');
