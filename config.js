@@ -53,7 +53,7 @@ window.HYPERSONIC_CONFIG = {
       safir: { status: 'open', credit: null },
       boragh: { status: 'open', credit: null },
       zu23: { status: 'open', credit: null },
-      bavar: { status: 'open', credit: null },
+      bavar: { status: 'recorded', credit: 'Okhos' },
       fajr5: { status: 'open', credit: null },
       zolfaghar: { status: 'open', credit: null }
     }
