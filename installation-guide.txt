@@ -17,10 +17,19 @@ INSTALLER
    The mod destination must be its own folder, outside Zero Hour.
 3. Launch the Generals Hypersonic shortcut.
 
+Close the game before you install, update or uninstall; the setup stops and
+asks you to close it if it is still running.
+
 The mod uses HypersonicZH.exe and Hypersonic.big in a separate mod folder.
 The default installer location is %LOCALAPPDATA%\Programs\Generals Hypersonic.
 The Zero Hour game folder is read, not changed.
 Options, saves, replays and crash reports use Documents\Generals Hypersonic Data.
+
+STEAM COPIES
+Steam copies of Zero Hour work. The installer finds Zero Hour in your Steam
+library, also in libraries on other drives. If it does not, select the folder
+by hand: the one that contains game.dat and INIZH.big, usually
+...\steamapps\common\<the Zero Hour folder>.
 
 PORTABLE ZIP
 Extract the official ZIP into its own folder, outside the Zero Hour folder.
@@ -39,6 +48,41 @@ In PowerShell: Get-FileHash -Algorithm SHA256 -LiteralPath 'path-to-package'
 The matching engine source accompanies every release
 (GeneralsHypersonic-<version>-engine-source.zip).
 See LICENSE-ENGINE.txt for the unchanged engine license and EA additional terms.
+
+UPDATING TO A NEW VERSION
+Installer: run the new setup. It installs over the old version in the same
+folder and removes files the new version no longer uses; there is no need to
+uninstall first. Options in Documents\Generals Hypersonic Data are kept.
+Portable ZIP: delete the old mod folder (never the Zero Hour folder), then
+extract the new ZIP in its place. Copy your HypersonicZH.ini over if you
+made one.
+Saved games and replays from an older version do not work in a new version.
+Online and LAN games need the same version for every player.
+
+SCREEN RESOLUTION (WIDESCREEN)
+In the game: Options, Resolution, pick your screen's size (for example
+1920x1080 or 1280x720), then Accept.
+Or by hand, with the game closed: open
+Documents\Generals Hypersonic Data\Options.ini in Notepad and change the line
+to, for example:
+
+Resolution = 1280 720
+
+(width, a space, height). The file is created the first time you start the
+game. If the game runs slowly, choose a smaller resolution and set Detail to
+Low in Options.
+
+CAMERA ZOOM
+The camera zooms out much further than in Zero Hour (camera height 550
+instead of 310), so missiles and drones can be followed over long distances.
+Use the mouse wheel. It applies to every faction.
+
+CUSTOM MAPS
+Custom skirmish maps in your normal Zero Hour maps folder
+(Documents\Command and Conquer Generals Zero Hour Data\Maps) appear in the
+map list automatically; the mod only reads that folder. Maps placed in
+Documents\Generals Hypersonic Data\Maps work too. The Iran AI also plays on
+custom maps.
 
 UNINSTALL
 Use the Start menu "Uninstall Generals Hypersonic" shortcut or Windows apps

@@ -101,6 +101,7 @@
   const stage = release.stage === 'public' ? 'public' : 'closed';
   document.querySelector('meta[name="description"]').content = `A free fan mod for Command & Conquer: Generals – Zero Hour. Iran joins as a fourth faction, with strike drones and ballistic missiles. ${stage === 'public' ? 'Public' : 'Closed'} Windows alpha; requires your own Zero Hour 1.04.`;
   const version = text(release.version, 60) || '1.0.0-alpha.1';
+  document.querySelectorAll('.next-current').forEach((el) => { el.textContent = version; });
   const source = url(release.engineSourceUrl, true);
   const androidSource = url(release.androidSourceUrl, true);
   const notes = url(release.notesUrl, true);

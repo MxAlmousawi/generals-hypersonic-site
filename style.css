@@ -399,6 +399,11 @@ details[open]>summary::after{content:"\2212"}
 
 /* Next update teaser (index.html "next-update" block). Delete with the block at release. */
 .next{border-top:1px solid var(--rule)}
+.next-panel{padding:var(--space-6);border:1px dashed var(--olive);background:repeating-linear-gradient(135deg,var(--surface) 0 14px,var(--bg) 14px 28px)}
+.next-flag{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);font:500 var(--text-xs)/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.next-badge{background:var(--olive);color:var(--on-brass);vertical-align:middle}
+.next-current{font-family:var(--font-mono);font-size:.9em}
+@media (max-width:640px){.next-panel{padding:var(--space-4)}}
 .next-list{display:flex;flex-direction:column;gap:var(--space-2);max-width:72ch}
 .next-list li{position:relative;padding-left:var(--space-5)}
 .next-list li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:8px;background:var(--olive)}
