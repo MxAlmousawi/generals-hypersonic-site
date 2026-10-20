@@ -43,7 +43,7 @@ window.HYPERSONIC_CONFIG = {
       announcer: { status: 'taken', credit: null },
       irgc: { status: 'open', credit: null },
       basij: { status: 'taken', credit: 'Nine Games' },
-      atgm: { status: 'open', credit: null },
+      atgm: { status: 'taken', credit: null },
       misagh: { status: 'open', credit: null },
       'drone-operator': { status: 'open', credit: null },
       kaveh: { status: 'open', credit: null },
