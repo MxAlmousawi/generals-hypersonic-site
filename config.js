@@ -38,7 +38,7 @@ window.HYPERSONIC_CONFIG = {
   // credit: the name the volunteer asked to be credited as (only with their OK), or null. Shown on the card and in
   // "Voices so far". Keep the Telegram role list (crossed-out roles) in step with this.
   voices: {
-    updated: '2026-10-20',
+    updated: '2026-10-21',
     roles: {
       announcer: { status: 'taken', credit: null },
       irgc: { status: 'open', credit: null },
@@ -47,7 +47,7 @@ window.HYPERSONIC_CONFIG = {
       misagh: { status: 'open', credit: null },
       'drone-operator': { status: 'open', credit: null },
       kaveh: { status: 'open', credit: null },
-      dozer: { status: 'open', credit: null },
+      dozer: { status: 'taken', credit: null },
       'supply-truck': { status: 'open', credit: null },
       karrar: { status: 'open', credit: null },
       safir: { status: 'open', credit: null },
