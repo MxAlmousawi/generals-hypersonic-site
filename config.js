@@ -48,7 +48,7 @@ window.HYPERSONIC_CONFIG = {
       'drone-operator': { status: 'open', credit: null },
       kaveh: { status: 'open', credit: null },
       dozer: { status: 'taken', credit: null },
-      'supply-truck': { status: 'open', credit: null },
+      'supply-truck': { status: 'taken', credit: 'Okhos' },
       karrar: { status: 'open', credit: null },
       safir: { status: 'open', credit: null },
       boragh: { status: 'open', credit: null },
