@@ -49,7 +49,7 @@ window.HYPERSONIC_CONFIG = {
       kaveh: { status: 'taken', credit: null },
       dozer: { status: 'taken', credit: null },
       'supply-truck': { status: 'recorded', credit: 'Okhos' },
-      karrar: { status: 'open', credit: null },
+      karrar: { status: 'taken', credit: null },
       safir: { status: 'open', credit: null },
       boragh: { status: 'open', credit: null },
       zu23: { status: 'open', credit: null },
