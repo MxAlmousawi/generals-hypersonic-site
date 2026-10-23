@@ -97,6 +97,25 @@
     return result;
   }
 
+  // Instagram mark (outline glyph, currentColor); same layout classes as the Discord link.
+  function instagramLink(label, destination, className) {
+    const result = link(null, destination, className);
+    result.classList.add('discord-link');
+    const icon = node('span', null, 'discord-icon');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>';
+    result.append(icon, document.createTextNode(label));
+    return result;
+  }
+
+  function telegramLink(label, destination, className) {
+    const result = link(null, destination, className);
+    result.classList.add('discord-link');
+    const icon = node('span', null, 'discord-icon');
+    icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.7 3.5c.6.4 1.4.1 1.6-.6L22.9 4.8c.2-.9-.6-1.6-1.4-1.3ZM9.6 14.2l-.5 3.6-1.3-4 9.6-6.6-7.8 7Z" fill="currentColor"/></svg>';
+    result.append(icon, document.createTextNode(label));
+    return result;
+  }
+
   // ---- Release state -------------------------------------------------------------------------
   const stage = release.stage === 'public' ? 'public' : 'closed';
   document.querySelector('meta[name="description"]').content = `A free fan mod for Command & Conquer: Generals – Zero Hour. Iran joins as a fourth faction, with strike drones and ballistic missiles. ${stage === 'public' ? 'Public' : 'Closed'} Windows alpha; requires your own Zero Hour 1.04.`;
@@ -110,6 +129,19 @@
   const provider = text(support.providerName, 60);
   const donation = provider && url(support.url);
   const communityUrl = url(community.url);
+  const instagramUrl = url(community.instagramUrl);
+  const telegramUrl = url(community.telegramUrl);
+  for (const [label, destination, render] of [['Discord', communityUrl, discordLink], ['Instagram', instagramUrl, instagramLink], ['Telegram', telegramUrl, telegramLink]]) {
+    if (!destination) continue;
+    for (const id of ['header-social', 'footer-social']) {
+      const action = render('', destination);
+      action.setAttribute('aria-label', label);
+      action.title = label;
+      byId(id).append(action);
+    }
+  }
+  byId('header-social').hidden = !byId('header-social').childElementCount;
+  byId('footer-community').hidden = !byId('footer-social').childElementCount;
   const bugUrl = url(community.bugReportUrl);
   const siteUrl = url(config.publicSiteUrl);
   // ---- Analytics: GoatCounter (no cookies, no personal data); off unless a site code is configured.
@@ -223,6 +255,11 @@
     if (enabled) byId('install').open = true;
   }
   if (communityUrl) route('Join the Discord', communityUrl, 'button', null, true);
+  if (instagramUrl) {
+    const item = node('div', null, 'route');
+    item.append(instagramLink('Follow on Instagram', instagramUrl, 'button'));
+    routes.append(item);
+  }
   routes.hidden = !routes.childElementCount;
 
   function ordinary(event) { return event.button === 0 && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey; }
@@ -319,6 +356,12 @@
     if (!communityUrl) channels.remove();
     byId('help-bug-link').append(document.createTextNode(' · '), link('Report a bug', bugUrl));
     byId('bug-helper').hidden = true;
+  }
+  // Inserted last so it sits right after the Discord link.
+  if (instagramUrl && communityUrl) {
+    const item = node('li');
+    item.append(instagramLink('Follow on Instagram', instagramUrl));
+    channels.after(item);
   }
   if (siteUrl) {
     byId('share-action').hidden = false;
@@ -442,6 +485,35 @@
   // ---- Header and anchor clearance -----------------------------------------------------------
   const header = document.querySelector('.site-header');
   const wide = matchMedia('(min-width: 768px)');
+  const menuToggle = header.querySelector('.menu-toggle');
+  function closeMenu() {
+    header.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  header.classList.add('has-menu');
+  menuToggle.hidden = false;
+  menuToggle.addEventListener('click', () => {
+    const open = header.classList.toggle('menu-open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  header.querySelector('nav').addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
+  document.addEventListener('click', event => { if (!header.contains(event.target)) closeMenu(); });
+  header.addEventListener('focusout', event => { if (!header.contains(event.relatedTarget)) closeMenu(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && header.classList.contains('menu-open')) {
+      closeMenu();
+      menuToggle.focus({ preventScroll: true });
+    }
+  });
+  const headerSupport = header.querySelector('.nav-support');
+  headerSupport.addEventListener('click', closeMenu);
+  function headerBreakpoint() {
+    closeMenu();
+    // Keep the single Support link in visual and keyboard order at both layouts.
+    menuToggle.parentElement.insertBefore(headerSupport, wide.matches ? null : menuToggle);
+  }
+  wide.addEventListener('change', headerBreakpoint);
+  headerBreakpoint();
   function headerState() { header.classList.toggle('at-top', scrollY <= 8); }
   function layout() {
     const height = Math.ceil(header.getBoundingClientRect().height);

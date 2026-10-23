@@ -74,8 +74,11 @@
   <!-- announce:end -->
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top"><img src="assets/generated/iran-emblem-64.png" srcset="assets/generated/iran-emblem-32.png 32w, assets/generated/iran-emblem-64.png 64w, assets/generated/iran-emblem-128.png 128w" sizes="28px" width="28" height="28" alt=""><span>Generals Hypersonic</span></a>
-      <nav aria-label="Main navigation"><a href="#download">Download</a><a href="#arsenal">Arsenal</a><a href="#voices"><span class="nav-long">Voice acting</span><span class="nav-short" aria-hidden="true">Voices</span></a><a class="nav-support" href="#support">Support</a></nav>
+      <a class="brand" href="#top"><img src="assets/generated/iran-emblem-64.png" srcset="assets/generated/iran-emblem-32.png 32w, assets/generated/iran-emblem-64.png 64w, assets/generated/iran-emblem-128.png 128w" sizes="28px" width="28" height="28" alt=""><span><span class="brand-kicker">Generals</span>Hypersonic</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu" hidden><span class="menu-label">Menu</span> <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      <nav id="main-nav" aria-label="Main navigation"><a href="#download">Download</a><a href="#arsenal">Arsenal</a><a href="#voices">Voice acting</a></nav>
+      <div class="social-links header-social" id="header-social" role="group" aria-label="Community" hidden></div>
+      <a class="nav-support" href="#support">Support</a>
     </div>
   </header>
   <main id="main">
@@ -249,6 +252,7 @@
 
   <footer class="footer"><div class="wrap">
     <div class="footer-top"><span class="footer-brand"><img src="assets/generated/iran-emblem-64.png" width="24" height="24" alt="">Generals Hypersonic</span><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+    <div class="footer-community" id="footer-community" hidden><span>Join the community</span><div class="social-links" id="footer-social" role="group" aria-label="Community"></div></div>
     <p>Made by MxAlmousawi. Built on TheSuperHackers community engine.</p>
     <p>An unofficial fan mod for Command &amp; Conquer: Generals – Zero&nbsp;Hour. EA has not endorsed and does not support this product. Game trademarks belong to their owners.</p>
     <p>Mod content © MxAlmousawi unless credited otherwise; engine under GPL-3.0 with EA's additional terms. See License.</p>

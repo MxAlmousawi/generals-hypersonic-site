@@ -25,7 +25,7 @@ window.HYPERSONIC_CONFIG = {
     eaAppUrl: 'https://www.ea.com/games/command-and-conquer/command-and-conquer-the-ultimate-collection'
   },
   support: { url: 'https://nowpayments.io/donation/generalshypersonic', providerName: 'NOWPayments', confirmedCostCategories: [] },
-  community: { email: 'generalshypersonic@gmail.com', url: 'https://discord.gg/NbYUCE6PX9', bugReportUrl: 'https://github.com/MxAlmousawi/generals-hypersonic-site/issues/new' },
+  community: { email: 'generalshypersonic@gmail.com', url: 'https://discord.gg/NbYUCE6PX9', instagramUrl: 'https://www.instagram.com/generalshypersonic/', telegramUrl: 'https://t.me/HypersonicVoices', bugReportUrl: 'https://github.com/MxAlmousawi/generals-hypersonic-site/issues/new' },
   // Cookie-free visit and download counts (goatcounter.com). Set the site code, e.g. 'hypersonic'; null = off.
   analytics: { goatcounterCode: 'generals-hypersonic' },
   publicSiteUrl: 'https://mxalmousawi.github.io/generals-hypersonic-site/',
