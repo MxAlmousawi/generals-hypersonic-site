@@ -137,6 +137,7 @@
       const action = render('', destination);
       action.setAttribute('aria-label', label);
       action.title = label;
+      if (id === 'header-social') action.append(node('span', label, 'social-name')); // shown in the phone strip only
       byId(id).append(action);
     }
   }

@@ -103,19 +103,25 @@ p+p{margin-top:var(--space-4)}
 .social-links a:hover{color:var(--brass-hover);background:var(--surface)}
 .social-links svg{display:block;width:19px;height:19px}
 .header-social{padding-left:var(--space-4);border-left:1px solid var(--rule)}
+.social-name{display:none}
 .menu-toggle{display:none;align-items:center;justify-content:center;gap:var(--space-2);min-width:80px;min-height:44px;padding:var(--space-2) var(--space-3);border:1px solid var(--rule);border-radius:var(--radius);background:transparent;color:var(--ink);font-size:var(--text-sm);font-weight:600}
 .menu-toggle:hover,.menu-toggle[aria-expanded="true"]{border-color:var(--brass);color:var(--brass)}
 .menu-toggle svg{width:18px;height:18px}
 @media (min-width:768px) and (max-width:1023px){.header-inner{gap:var(--space-4)}.site-header nav{gap:var(--space-1)}.site-header nav a{padding-inline:var(--space-2)}.header-social{padding-left:var(--space-3)}}
 @media (max-width:767px){
-  .header-inner{position:relative}
-  .header-social{display:none}
+  .header-inner{position:relative;flex-wrap:wrap;row-gap:0}
+  /* phones: the community links on a thin strip under the header row (most Instagram visitors are on a phone) */
+  .header-social{order:5;flex:0 0 100%;justify-content:center;gap:var(--space-5);padding:0;border-left:0;border-top:1px solid var(--rule)}
+  .header-social a{width:auto;gap:var(--space-2);padding-inline:var(--space-2);font-size:var(--text-sm);font-weight:600}
+  .header-social svg{width:16px;height:16px}
+  .social-name{display:inline}
   .menu-toggle{display:inline-flex}
   .site-header .nav-support{margin-left:auto;padding-inline:var(--space-3)}
   .site-header.has-menu nav{display:none;position:absolute;left:0;right:0;top:100%;z-index:1;grid-template-columns:1fr 1fr;gap:var(--space-2);margin:0;padding:var(--space-3);border:1px solid var(--rule);background:var(--bg);box-shadow:0 12px 24px rgb(0 0 0 / .2)}
   .site-header.menu-open nav{display:grid}
   .site-header nav a{min-height:48px}
 }
+@media (max-width:399px){.header-social{justify-content:space-between;gap:0}.header-social a{padding-inline:var(--space-1)}}
 
 /* Hero */
 .hero{position:relative;text-align:center;padding-block:var(--space-4) var(--space-5);min-height:calc(100vh - var(--header-height));min-height:calc(100svh - var(--header-height));display:flex;flex-direction:column;justify-content:center} /* owner: the first screen ends cleanly, nothing of the next section peeks in */
@@ -523,10 +529,10 @@ dialog::backdrop{background:var(--backdrop)}
 @media (max-width:359px){
   :root{--gutter:16px}
   .brand{font-size:22px}
-  .menu-toggle{width:44px;min-width:44px;height:44px;padding:0}
-  .menu-label{display:none}
   .footer-top{flex-wrap:wrap;gap:var(--space-2)}
 }
+/* icon-only Menu up to 374px: with its label it wraps onto a row of its own at 360 (the common Android width) */
+@media (max-width:374px){.menu-toggle{width:44px;min-width:44px;height:44px;padding:0}.menu-label{display:none}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
