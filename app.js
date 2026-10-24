@@ -131,15 +131,51 @@
   const communityUrl = url(community.url);
   const instagramUrl = url(community.instagramUrl);
   const telegramUrl = url(community.telegramUrl);
+  const promo = object(config.promo);
+  const promoReel = promo.enabled === true && url(promo.reelUrl);
   for (const [label, destination, render] of [['Discord', communityUrl, discordLink], ['Instagram', instagramUrl, instagramLink], ['Telegram', telegramUrl, telegramLink]]) {
     if (!destination) continue;
-    for (const id of ['header-social', 'footer-social']) {
+    for (const id of promoReel ? ['footer-social'] : ['header-social', 'footer-social']) {
       const action = render('', destination);
       action.setAttribute('aria-label', label);
       action.title = label;
       if (id === 'header-social') action.append(node('span', label, 'social-name')); // shown in the phone strip only
       byId(id).append(action);
     }
+  }
+  // Temporary promo (config.promo): the new reel and the Instagram account take the header icons' place.
+  if (promoReel) {
+    const slot = byId('header-social');
+    const kicker = text(promo.kicker, 30) || 'New reel';
+    const title = text(promo.title, 60) || 'Watch on Instagram';
+    const reel = link(null, promoReel, 'promo-reel');
+    reel.target = '_blank';
+    reel.rel = 'noopener';
+    reel.setAttribute('aria-label', `${kicker}: ${title}. Watch on Instagram (opens in a new tab)`);
+    const thumbUrl = url(promo.thumb, true);
+    if (thumbUrl) {
+      const thumb = node('span', null, 'promo-thumb');
+      const image = node('img');
+      Object.assign(image, { src: thumbUrl, alt: '', width: 32, height: 32, decoding: 'async' });
+      thumb.append(image);
+      thumb.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.8v8.4L12.3 8Z" fill="currentColor"/></svg>');
+      reel.append(thumb);
+    }
+    const label = node('span', null, 'promo-text');
+    label.append(node('span', kicker, 'promo-kicker'), node('span', title, 'promo-title'));
+    reel.append(label);
+    slot.append(reel);
+    const account = url(promo.accountUrl);
+    if (account) {
+      const follow = instagramLink('', account, 'promo-account');
+      follow.target = '_blank';
+      follow.rel = 'noopener';
+      follow.setAttribute('aria-label', 'Follow Generals Hypersonic on Instagram (opens in a new tab)');
+      follow.title = 'Follow on Instagram';
+      slot.append(follow);
+    }
+    slot.classList.add('header-promo');
+    slot.setAttribute('aria-label', 'New on Instagram');
   }
   byId('header-social').hidden = !byId('header-social').childElementCount;
   byId('footer-community').hidden = !byId('footer-social').childElementCount;

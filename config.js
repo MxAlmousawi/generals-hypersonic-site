@@ -26,6 +26,9 @@ window.HYPERSONIC_CONFIG = {
   },
   support: { url: 'https://nowpayments.io/donation/generalshypersonic', providerName: 'NOWPayments', confirmedCostCategories: [] },
   community: { email: 'generalshypersonic@gmail.com', url: 'https://discord.gg/NbYUCE6PX9', instagramUrl: 'https://www.instagram.com/generalshypersonic/', telegramUrl: 'https://t.me/HypersonicVoices', bugReportUrl: 'https://github.com/MxAlmousawi/generals-hypersonic-site/issues/new' },
+  // Temporary header promo (2026-10-24): replaces the three header community icons with the new reel and the
+  // Instagram account. enabled: false = the three icons come back exactly as before. Footer links are not affected.
+  promo: { enabled: true, kicker: 'New reel', title: 'First look at the next update', reelUrl: 'https://www.instagram.com/p/De44DUQB2yK/', accountUrl: 'https://www.instagram.com/generalshypersonic/', thumb: 'assets/generated/reel-thumb-96.webp' },
   // Cookie-free visit and download counts (goatcounter.com). Set the site code, e.g. 'hypersonic'; null = off.
   analytics: { goatcounterCode: 'generals-hypersonic' },
   publicSiteUrl: 'https://mxalmousawi.github.io/generals-hypersonic-site/',
