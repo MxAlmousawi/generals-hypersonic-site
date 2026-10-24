@@ -47,7 +47,7 @@ window.HYPERSONIC_CONFIG = {
       irgc: { status: 'recorded', credit: null },
       basij: { status: 'recorded', credit: '@9ninegames9' },
       atgm: { status: 'taken', credit: null },
-      misagh: { status: 'open', credit: null },
+      misagh: { status: 'taken', credit: null },
       'drone-operator': { status: 'recorded', credit: 'Morteza Zare Moghaddam' },
       kaveh: { status: 'recorded', credit: 'Big Dani' },
       dozer: { status: 'recorded', credit: null },
