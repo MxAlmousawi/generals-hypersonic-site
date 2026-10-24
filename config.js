@@ -53,11 +53,11 @@ window.HYPERSONIC_CONFIG = {
       dozer: { status: 'recorded', credit: null },
       'supply-truck': { status: 'recorded', credit: 'Okhos' },
       karrar: { status: 'taken', credit: null },
-      safir: { status: 'open', credit: null },
+      safir: { status: 'taken', credit: null },
       boragh: { status: 'open', credit: null },
       zu23: { status: 'recorded', credit: 'danialgh' },
       bavar: { status: 'recorded', credit: 'Okhos' },
-      fajr5: { status: 'open', credit: null },
+      fajr5: { status: 'taken', credit: null },
       zolfaghar: { status: 'recorded', credit: '@9ninegames9' }
     }
   },
