@@ -148,33 +148,33 @@
     const slot = byId('header-social');
     const kicker = text(promo.kicker, 30) || 'New reel';
     const title = text(promo.title, 60) || 'Watch on Instagram';
-    const reel = link(null, promoReel, 'promo-reel');
+    const reel = link(null, promoReel, 'feature-reel');
     reel.target = '_blank';
     reel.rel = 'noopener';
     reel.setAttribute('aria-label', `${kicker}: ${title}. Watch on Instagram (opens in a new tab)`);
     const thumbUrl = url(promo.thumb, true);
     if (thumbUrl) {
-      const thumb = node('span', null, 'promo-thumb');
+      const thumb = node('span', null, 'feature-thumb');
       const image = node('img');
       Object.assign(image, { src: thumbUrl, alt: '', width: 32, height: 32, decoding: 'async' });
       thumb.append(image);
       thumb.insertAdjacentHTML('beforeend', '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.8v8.4L12.3 8Z" fill="currentColor"/></svg>');
       reel.append(thumb);
     }
-    const label = node('span', null, 'promo-text');
-    label.append(node('span', kicker, 'promo-kicker'), node('span', title, 'promo-title'));
+    const label = node('span', null, 'feature-text');
+    label.append(node('span', kicker, 'feature-kicker'), node('span', title, 'feature-title'));
     reel.append(label);
     slot.append(reel);
     const account = url(promo.accountUrl);
     if (account) {
-      const follow = instagramLink('', account, 'promo-account');
+      const follow = instagramLink('', account, 'feature-account');
       follow.target = '_blank';
       follow.rel = 'noopener';
       follow.setAttribute('aria-label', 'Follow Generals Hypersonic on Instagram (opens in a new tab)');
       follow.title = 'Follow on Instagram';
       slot.append(follow);
     }
-    slot.classList.add('header-promo');
+    slot.classList.add('header-feature');
     slot.setAttribute('aria-label', 'New on Instagram');
   }
   byId('header-social').hidden = !byId('header-social').childElementCount;
