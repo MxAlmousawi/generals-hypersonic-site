@@ -54,7 +54,7 @@ window.HYPERSONIC_CONFIG = {
       'supply-truck': { status: 'recorded', credit: 'Okhos' },
       karrar: { status: 'taken', credit: null },
       safir: { status: 'taken', credit: null },
-      boragh: { status: 'open', credit: null },
+      boragh: { status: 'taken', credit: null },
       zu23: { status: 'recorded', credit: 'danialgh' },
       bavar: { status: 'recorded', credit: 'Okhos' },
       fajr5: { status: 'taken', credit: null },
