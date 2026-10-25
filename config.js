@@ -46,7 +46,7 @@ window.HYPERSONIC_CONFIG = {
       announcer: { status: 'recorded', credit: 'Mohammadhosein Farahnaki' },
       irgc: { status: 'recorded', credit: null },
       basij: { status: 'recorded', credit: '@9ninegames9' },
-      atgm: { status: 'taken', credit: null },
+      atgm: { status: 'recorded', credit: 'A.R.M' },
       misagh: { status: 'taken', credit: null },
       'drone-operator': { status: 'recorded', credit: 'Morteza Zare Moghaddam' },
       kaveh: { status: 'recorded', credit: 'Big Dani' },
