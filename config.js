@@ -57,7 +57,7 @@ window.HYPERSONIC_CONFIG = {
       boragh: { status: 'taken', credit: null },
       zu23: { status: 'recorded', credit: 'danialgh' },
       bavar: { status: 'recorded', credit: 'Okhos' },
-      fajr5: { status: 'taken', credit: null },
+      fajr5: { status: 'recorded', credit: 'Saeed jeddi' },
       zolfaghar: { status: 'recorded', credit: '@9ninegames9' }
     }
   },
