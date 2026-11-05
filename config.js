@@ -35,7 +35,7 @@ window.HYPERSONIC_CONFIG = {
   // Thin bar at the top of the page pointing to the voice acting roles (#voices), with the open-role count from `voices`.
   // enabled: false = no bar. A visitor who closes it never sees this campaign again (stored per browser); a new `id`
   // shows the bar again to everyone. It also hides itself while no role is open.
-  announcement: { enabled: true, id: 'voices-2026-10', href: '#voices' },
+  announcement: { enabled: true, id: 'update-2026-11-06', href: '#next', text: 'Next update: releasing tomorrow, November 6.', linkText: 'See what is coming' },
   // Voice acting casting board (#voices). Change only `status` and `credit`, then set `updated`.
   // status: 'open' | 'taken' (someone has claimed it) | 'recorded' (recordings received).
   // credit: the name the volunteer asked to be credited as (only with their OK), or null. Shown on the card and in

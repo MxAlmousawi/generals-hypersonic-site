@@ -41,22 +41,28 @@
        a new campaign (a new id shows it again to everyone) in config.js `announcement`; the count comes from `voices`. -->
   <section class="announce" id="announce" aria-label="Voice acting announcement" hidden>
     <div class="wrap announce-inner">
-      <p>Volunteer voice acting: <span id="announce-count">roles open</span>. <a id="announce-link" href="#voices">View roles <span aria-hidden="true">→</span></a></p>
+      <p><span id="announce-text">Volunteer voice acting: <span id="announce-count">roles open</span>.</span> <a id="announce-link" href="#voices"><span id="announce-link-text">View roles</span> <span aria-hidden="true">→</span></a></p>
       <button class="announce-close" id="announce-close" type="button" aria-label="Dismiss announcement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </section>
   <script>
     /* Runs before the first paint, so the page does not jump. Shown when switched on, with a valid campaign id and
-       link, not closed before in this browser, and at least one role open. */
+       link, not closed before in this browser, and either its own text (config `announcement.text`) or a role open. */
     (function () {
       try {
         var config = window.HYPERSONIC_CONFIG || {}, notice = config.announcement || {}, roles = (config.voices || {}).roles || {};
         var open = Object.keys(roles).filter(function (key) { return roles[key] && roles[key].status === 'open'; }).length;
         var key = 'hypersonic.announce.' + notice.id;
-        if (notice.enabled !== true || !/^[\w-]{1,40}$/.test(notice.id || '') || !/^#[A-Za-z][\w-]*$/.test(notice.href || '') || !open) return;
+        if (notice.enabled !== true || !/^[\w-]{1,40}$/.test(notice.id || '') || !/^#[A-Za-z][\w-]*$/.test(notice.href || '') || (!notice.text && !open)) return;
         try { if (localStorage.getItem(key)) return; } catch (error) { /* storage blocked: show it */ }
         var bar = document.getElementById('announce'), root = document.documentElement;
-        document.getElementById('announce-count').textContent = open + (open === 1 ? ' role open' : ' roles open');
+        if (notice.text) {
+          document.getElementById('announce-text').textContent = notice.text;
+          document.getElementById('announce-link-text').textContent = notice.linkText || 'Read more';
+          bar.setAttribute('aria-label', 'Announcement');
+        } else {
+          document.getElementById('announce-count').textContent = open + (open === 1 ? ' role open' : ' roles open');
+        }
         document.getElementById('announce-link').href = notice.href;
         bar.hidden = false;
         root.style.setProperty('--announce-height', Math.ceil(bar.getBoundingClientRect().height) + 'px');
