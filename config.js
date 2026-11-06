@@ -26,7 +26,7 @@ window.HYPERSONIC_CONFIG = {
   },
   // Only enabled options with a valid URL appear. Fill in the URL and set enabled: true after the owner checks.
   support: [
-    { id: 'crypto', url: 'https://nowpayments.io/donation/generalshypersonic', providerName: 'NOWPayments', note: 'Works from anywhere, including Iran and Syria', enabled: true },
+    { id: 'crypto', url: 'https://nowpayments.io/donation/generalshypersonic', providerName: 'NOWPayments', note: 'Accepts crypto donations', enabled: true },
     // Wait for the owner's Payoneer check; itch.io must keep the download free ($0 minimum).
     { id: 'itch', url: '', providerName: 'itch.io', note: 'For card or PayPal donors: any amount, one-time', enabled: false },
     // Wait for the owner to check that the Whish Me QR reveals no phone number or full name.

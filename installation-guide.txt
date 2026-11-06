@@ -53,9 +53,9 @@ UPDATING TO A NEW VERSION
 Installer: run the new setup. It installs over the old version in the same
 folder and removes files the new version no longer uses; there is no need to
 uninstall first. Options in Documents\Generals Hypersonic Data are kept.
-Portable ZIP: delete the old mod folder (never the Zero Hour folder), then
-extract the new ZIP in its place. Copy your HypersonicZH.ini over if you
-made one.
+Portable ZIP: if you made a HypersonicZH.ini, copy it somewhere safe first.
+Delete the old mod folder (never the Zero Hour folder), extract the new ZIP
+in its place, then put your HypersonicZH.ini back.
 Saved games and replays from an older version do not work in a new version.
 Online and LAN games need the same version for every player.
 
