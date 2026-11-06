@@ -4,7 +4,11 @@
   const text = (value, limit = 150) => typeof value === 'string' && value.trim() && value.trim().length <= limit ? value.trim() : null;
   const config = object(window.HYPERSONIC_CONFIG);
   const release = object(config.release);
-  const support = object(config.support);
+  const supportLabels = { crypto: 'Crypto', itch: 'Card or PayPal', whish: 'Whish (Lebanon)' };
+  const support = (Array.isArray(config.support) ? config.support : []).map(object)
+    .filter(option => option.enabled === true && Object.hasOwn(supportLabels, option.id))
+    .map(option => ({ id: option.id, url: url(option.url, true), providerName: text(option.providerName, 60), note: text(option.note, 150) }))
+    .filter(option => option.url && option.providerName && option.note);
   const community = object(config.community);
   const prereq = object(config.prereq);
   const byId = id => document.getElementById(id);
@@ -119,15 +123,12 @@
   // ---- Release state -------------------------------------------------------------------------
   const stage = release.stage === 'public' ? 'public' : 'closed';
   document.querySelector('meta[name="description"]').content = `A free fan mod for Command & Conquer: Generals – Zero Hour. Iran joins as a fourth faction, with strike drones and ballistic missiles. ${stage === 'public' ? 'Public' : 'Closed'} Windows alpha; requires your own Zero Hour 1.04.`;
-  const version = text(release.version, 60) || '1.0.0-alpha.1';
-  document.querySelectorAll('.next-current').forEach((el) => { el.textContent = version; });
+  const version = text(release.version, 60) || '1.0.0-alpha.2';
   const source = url(release.engineSourceUrl, true);
   const androidSource = url(release.androidSourceUrl, true);
   const notes = url(release.notesUrl, true);
   const signup = url(release.testerSignupUrl);
   const access = url(release.testerAccessUrl);
-  const provider = text(support.providerName, 60);
-  const donation = provider && url(support.url);
   const communityUrl = url(community.url);
   const instagramUrl = url(community.instagramUrl);
   const telegramUrl = url(community.telegramUrl);
@@ -233,8 +234,8 @@
   function statusLabel(stageName) {
     sepFill(byId('status-label'), [stageName, node('span', `v${version}`, 'version'), 'Windows PC']);
   }
-  // Heading: "Alpha availability" while there is nothing to act on; "Get the alpha" once a route or package exists.
-  byId('download-title').textContent = (signup || access || communityUrl || enabled) ? 'Get the alpha' : 'Alpha availability';
+  // Heading: "Alpha availability" while there is nothing to act on; "Download" once a route or package exists.
+  byId('download-title').textContent = (signup || access || communityUrl || enabled) ? 'Download' : 'Alpha availability';
   if (stage === 'closed') {
     sepFill(byId('hero-release'), [`v${version}`, 'Closed Windows alpha', `Requires ${zh}`, 'Android planned']);
     statusLabel('Closed alpha');
@@ -275,7 +276,7 @@
       const block = node('article', null, 'package android');
       const head = node('div', null, 'package-head');
       head.append(node('span', 'Experimental', 'badge'), node('h3', 'Android'));
-      block.append(head, node('p', 'For 64-bit phones on Android 9 or newer. Copy your own Zero Hour game files to the phone, install the APK, then pick that folder in the app’s setup screen.', 'package-desc'));
+      block.append(head, node('p', 'For 64-bit phones on Android 9 or newer. Copy your own Zero Hour game files to the phone, install the APK, then pick that folder in the app’s setup screen. Phones and PCs cannot play together in this version.', 'package-desc'));
       block.append(downloadButton('android', phone), node('p', `v${version} · Skirmish works; expect rough edges on phones`, 'package-meta'));
       blocks.append(block);
     }
@@ -308,7 +309,7 @@
     retry.dataset.package = key;
     retry.setAttribute('download', '');
     byId('request-links').replaceChildren(retry);
-    if (donation) byId('request-links').append(link('Support the developer →', '#support'));
+    if (support.length) byId('request-links').append(link('Support the developer →', '#support'));
   }
   document.addEventListener('click', event => {
     const action = event.target.closest('a[data-package]');
@@ -367,10 +368,21 @@
   byId('signing-note').hidden = !(release.signingStatus === 'unsigned' && enabled);
 
   // ---- Support -------------------------------------------------------------------------------
-  if (donation) {
-    byId('donation-action').replaceChildren(link('Support the developer', donation, 'button dark'), node('p', `Opens ${provider}`, 'provider-note'));
+  if (support.length) {
+    const options = node('ul', null, 'support-options');
+    for (const option of support) {
+      const item = node('li');
+      const action = link(null, option.url, 'button dark support-button');
+      action.dataset.support = option.id;
+      action.append(node('strong', supportLabels[option.id]), node('span', option.note, 'support-note'), node('span', `Opens ${option.providerName}`, 'provider-note'));
+      action.addEventListener('click', () => countEvent(`support-${option.id}`, `Support via ${option.providerName}`));
+      item.append(action);
+      if (option.id === 'crypto') item.append(byId('crypto-howto').content.cloneNode(true));
+      options.append(item);
+    }
+    byId('donation-action').replaceChildren(options);
   }
-  const costs = Array.isArray(support.confirmedCostCategories) ? support.confirmedCostCategories.map(value => text(value, 100)).filter(Boolean).slice(0, 8) : [];
+  const costs = Array.isArray(config.confirmedSupportCostCategories) ? config.confirmedSupportCostCategories.map(value => text(value, 100)).filter(Boolean).slice(0, 8) : [];
   if (costs.length) {
     byId('confirmed-costs').hidden = false;
     byId('confirmed-costs').textContent = `Mod costs covered from donations include ${costs.join(', ')}.`;
@@ -414,65 +426,6 @@
         byId('share-url').select();
       }
     });
-  }
-
-  // ---- Voice acting casting board: role status and credits from config.voices ------------------
-  // Without JavaScript (or without config) the cards show no status and the count line points to
-  // the Telegram role list, so the page never claims a role is open when it is not known.
-  const voices = object(config.voices);
-  const castRoles = object(voices.roles);
-  const STATUS = {
-    open: ['Open', 'آزاد'],
-    taken: ['Taken', 'رزرو شده'],
-    recorded: ['Recorded', 'ضبط شده']
-  };
-  const faDigits = value => String(value).replace(/\d/g, digit => '۰۱۲۳۴۵۶۷۸۹'[digit]);
-  const cards = [...document.querySelectorAll('#voices [data-role]')];
-  const known = cards.filter(card => STATUS[object(castRoles[card.dataset.role]).status]);
-  if (cards.length && known.length === cards.length) {
-    const names = [];
-    let open = 0;
-    const strip = byId('cast-strip');
-    for (const card of cards) {
-      const role = object(castRoles[card.dataset.role]);
-      const [en, fa] = STATUS[role.status];
-      if (role.status === 'open') open += 1;
-      card.dataset.status = role.status;
-      const chip = card.querySelector('.role-status');
-      chip.replaceChildren(node('span', en), node('span', fa));
-      chip.lastChild.lang = 'fa';
-      chip.hidden = false;
-      const credit = text(role.credit, 60);
-      const creditLine = card.querySelector('.role-credit');
-      if (credit && role.status !== 'open') {
-        // Language-neutral: a microphone mark and the name (the status chip already says taken/recorded in both languages).
-        const icon = node('span', null, 'mic');
-        icon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm-6 9a6 6 0 0 0 12 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-        creditLine.replaceChildren(icon, node('span', role.status === 'recorded' ? 'Voiced by ' : 'Claimed by ', 'sr-only'), node('bdi', credit));
-        creditLine.hidden = false;
-        if (role.status === 'recorded') names.push(credit);
-      }
-      // One equal cell per role in page order (decorative; the text count is the accessible version).
-      const cell = node('li', null, `cast-cell ${role.status}`);
-      strip.append(cell);
-    }
-    strip.hidden = false;
-    const total = cards.length;
-    const count = byId('cast-count');
-    count.classList.add('filled');
-    count.replaceChildren(
-      node('strong', `${open} of ${total} roles open`),
-      node('span', `${faDigits(open)} از ${faDigits(total)} نقش آزاد`, 'cast-count-fa'));
-    count.lastChild.lang = 'fa';
-    count.lastChild.dir = 'rtl';
-    const updated = typeof voices.updated === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(voices.updated) ? new Date(`${voices.updated}T12:00:00Z`) : null;
-    if (updated && !Number.isNaN(updated.getTime())) {
-      count.append(node('span', `Updated ${updated.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}`, 'cast-updated'));
-    }
-    if (names.length) {
-      byId('cast-names').replaceChildren(...names.map(name => { const item = node('li'); item.append(node('bdi', name)); return item; }));
-      byId('cast-credits').hidden = false;
-    }
   }
 
   // ---- Showcase images and the enlarged-image viewer -----------------------------------------

@@ -4,21 +4,60 @@ EA has not endorsed and does not support this product.
 
 Free unofficial fan mod for Command & Conquer: Generals – Zero Hour.
 Iran joins as a fourth faction, with strike drones and ballistic missiles,
-in skirmish against the AI and in multiplayer. Public packages, once
-available, are listed on the website with their version and checksums.
-Android is planned for a later alpha; no Android download is available.
+in skirmish against the AI and in multiplayer. Packages are listed on the
+website with their version and checksums. The Android build is experimental.
 
 ------------------------------------------------------------------------
-v1.0.0-alpha.1 (October 2026): closed Windows alpha for invited testers
+v1.0.0-alpha.2 (November 2026)
 ------------------------------------------------------------------------
-Formats for testers: Windows installer and portable ZIP.
+NEW
+- Qadr cluster missile: its warhead splits into 10 submunitions in the final
+  dive, covering a wide area.
+- Gaza recon drone: stays in the air, detects stealth, drops bombs and fires
+  Almas missiles.
+- Bavar-373: a long-range SAM truck that deploys on its own, replacing the Herz-9.
+- Persian unit voices and a new English announcer, all recorded by volunteers.
+
+CHANGED
+- Khorramshahr-4 reworked: submunitions released one by one, and a silo with
+  blast doors.
+- Faster, cheaper missile and drone strikes, and a bigger Drone Facility.
+- Interception now depends on the enemy faction, with Countermeasures upgrades
+  to get past it.
+- Regular missile launches show the launch site to enemies for a few seconds and
+  alert them, so a missile base can be targeted.
+- New missile and drone sounds, and a bigger missile explosion.
+- Smoother drone flight, burning wrecks, cook-offs, and revenge drones from
+  destroyed buildings.
+- New building art: construction stages, visible upgrades and damaged looks.
+- Wider camera zoom-out, in Options and with Ctrl + mouse wheel.
+- Custom skirmish maps from your Zero Hour maps folder, with the Iran AI.
+- Clearer tooltips, and shortcuts that no longer clash with the game's own keys.
+
+FIXED
+- A mid-game freeze caused by the sound system. If the game still freezes for
+  you, please send the Logs folder from Documents\Generals Hypersonic Data.
+- An Easy Iran AI that could stop building early in a match.
+- Android: updated, with crash and display fixes.
+
+KNOWN LIMITS
+- Phones and PCs cannot play together in this version.
+- Saved games and replays from alpha.1 do not work in this version, and every
+  player in an online or LAN game needs the same version.
+- Performance of big salvos on weak phones has not been measured.
+- The files are unsigned, so Windows may show a security warning.
+
+------------------------------------------------------------------------
+v1.0.0-alpha.1 (October 2026): first public alpha
+------------------------------------------------------------------------
+Formats: Windows installer, portable ZIP and an experimental Android APK.
 Campaign missions, Generals Challenge and Iran sub-generals are not included.
 
 EXPECTATIONS
 - Bugs, unfinished or placeholder art/icons, evolving balance and possible crashes.
 - Iran's skirmish AI is still being tuned.
 - Multiplayer requires the same Hypersonic build and executable for every player.
-- Android-to-PC multiplayer is unresolved; do not assume cross-platform support.
+- Phones and PCs cannot play together.
 - Testing on more PCs and across game installation variants is still in progress.
   No finished compatibility claim is made.
 
